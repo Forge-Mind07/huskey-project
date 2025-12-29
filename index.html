@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HUSKEY — Chat First (Dark)</title>
+
+  <style>
+    :root{--bg:#0d0f11;--panel:#0b0c0e;--muted:#98a3b0;--accent:#6172f1}
+    *{box-sizing:border-box}
+    body{
+      margin:0;height:100vh;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      background:linear-gradient(180deg,#0b0c0e,#07080a);
+      color:#e8eef8;display:flex
+    }
+    .leftbar{
+      width:84px;background:#0b0c0e;
+      border-right:1px solid rgba(255,255,255,0.03);
+      display:flex;flex-direction:column;
+      align-items:center;padding:14px 8px
+    }
+    .logo{
+      width:40px;height:40px;border-radius:8px;
+      background:linear-gradient(180deg,#0e1720,#07121b);
+      display:flex;align-items:center;justify-content:center;
+      color:#6d6ef8;font-weight:700;margin-bottom:10px
+    }
+    .sidebar-items{flex:1;display:flex;flex-direction:column;gap:10px;align-items:center}
+    .feature-btn{
+      width:48px;height:48px;border-radius:12px;
+      background:transparent;border:1px solid rgba(255,255,255,0.06);
+      color:#98a3b0;font-size:20px;cursor:pointer
+    }
+    .feature-btn.active,.feature-btn:hover{
+      background:rgba(97,114,241,0.18);
+      border-color:#6172f1;color:#6172f1
+    }
+    .center{flex:1;display:flex;align-items:center;justify-content:center}
+    .chat-wrap{width:min(820px,92%);display:flex;flex-direction:column;gap:16px}
+    .headline{font-size:22px}
+    .sub{color:var(--muted);font-size:13px}
+    .chatbox{
+      background:#111315;border-radius:18px;
+      padding:18px 20px;
+      box-shadow:0 24px 80px rgba(2,6,23,0.7);
+      border:1px solid rgba(255,255,255,0.03)
+    }
+    .tip{font-size:13px;color:var(--muted);margin-bottom:8px}
+    #messages{
+      max-height:360px;overflow:auto;
+      display:flex;flex-direction:column;gap:10px;
+      margin-bottom:12px
+    }
+    .msg{max-width:78%;padding:10px 12px;border-radius:12px;font-size:14px}
+    .msg.user{align-self:flex-end;background:linear-gradient(180deg,#1b1f2a,#0f1113)}
+    .msg.assistant{align-self:flex-start;background:rgba(255,255,255,0.04)}
+    .msg.error{align-self:center;background:rgba(255,80,80,0.1);color:salmon}
+    .input-row{display:flex;align-items:center;gap:10px}
+    .tool{display:flex;gap:8px}
+    .icon-btn{
+      width:38px;height:38px;border-radius:10px;
+      background:transparent;border:1px solid rgba(255,255,255,0.06);
+      color:#98a3b0;font-size:18px;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer
+    }
+    .icon-btn:hover{background:rgba(97,114,241,0.08);color:#6172f1}
+    .text-input{
+      flex:1;padding:14px;border-radius:14px;
+      background:#0f1113;border:1px solid rgba(255,255,255,0.02);
+      color:#e8eef8;font-size:15px;
+      resize:none;min-height:44px
+    }
+    .send-btn{
+      width:44px;height:44px;border-radius:50%;
+      background:var(--accent);
+      border:none;color:white;
+      font-size:18px;cursor:pointer
+    }
+    .bottom-left{
+      position:fixed;left:92px;bottom:22px;
+      color:var(--muted);font-size:13px
+    }
+    @media(max-width:780px){.leftbar{display:none}}
+  </style>
+</head>
+
+<body>
+
+<aside class="leftbar">
+  <div class="logo">H</div>
+  <div class="sidebar-items">
+    <button class="feature-btn active">💬</button>
+    <button class="feature-btn">📔</button>
+    <button class="feature-btn">✨</button>
+    <button class="feature-btn">🎯</button>
+    <button class="feature-btn">🆘</button>
+    <button class="feature-btn">🤝</button>
+  </div>
+</aside>
+
+<main class="center">
+  <div class="chat-wrap">
+    <div class="headline">How can I help you today? ●</div>
+    <div class="sub">Message Huskey — empathetic, private, helpful.</div>
+
+    <div class="chatbox">
+      <div class="tip">Tip: Press Enter to send</div>
+
+      <div id="messages"></div>
+
+      <div class="input-row">
+        <div class="tool">
+          <label class="icon-btn">
+            📎
+            <input type="file" id="fileInput" hidden />
+          </label>
+          <button class="icon-btn" id="micBtn">🎤</button>
+        </div>
+
+        <textarea id="userInput" class="text-input" placeholder="Message Huskey"></textarea>
+        <button id="sendBtn" class="send-btn">➤</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="bottom-left">Monish Kumar · Private conversations</div>
+
+<!-- ✅ ONLY THIS SCRIPT -->
+<script src="app.js"></script>
+</body>
+</html>
